@@ -194,7 +194,6 @@ namespace Case2BookingCoworking.Services
 					)
 				{
 					return false;
-
 				}
 			}
 			return true;
