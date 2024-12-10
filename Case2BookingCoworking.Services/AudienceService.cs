@@ -94,7 +94,7 @@ namespace Case2BookingCoworking.Services
 
 			foreach (var item in errorOrListAudiences.Value)
 			{
-				if (item.Status != "WORKING")
+				if (item.Status == "WORKING")
 				{
 					numbersOfAudiences.Add(item.Number);
 				}
@@ -186,7 +186,8 @@ namespace Case2BookingCoworking.Services
 			{
 				if (
 					(startOfBooking >= interval.Item1 && startOfBooking <= interval.Item2)
-					|| (endOfBooking >= interval.Item1 && endOfBooking <= interval.Item2)
+					|| (endOfBooking >= interval.Item1 && endOfBooking <= interval.Item2) ||
+					(startOfBooking <= interval.Item1 && endOfBooking >= interval.Item2)
 					)
 				{
 					return false;

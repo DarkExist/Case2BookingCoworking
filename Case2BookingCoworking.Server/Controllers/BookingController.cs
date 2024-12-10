@@ -44,6 +44,10 @@ namespace Case2BookingCoworking.Server.Controllers
         {
             var userId = ParseUserGuid();
             var result = await _audienceService.CheckBookAudience(audienceRequest, userId, cancellationToken);
+
+            if (result.IsError)
+                return BadRequest(result);
+
             var audience = result.Value;
             return Ok(audience);
         }
