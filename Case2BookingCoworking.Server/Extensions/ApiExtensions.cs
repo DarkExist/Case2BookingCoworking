@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Case2BookingCoworking.Application.Abstract.Services;
+using Case2BookingCoworking.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -6,6 +8,10 @@ namespace Case2BookingCoworking.Server.Extensions
 {
     public static class ApiExtensions
     {
+        public static void AddBookingServices(this IServiceCollection services)
+        {
+            services.AddTransient<IUserService, UserService>();
+        }
         public static void AddApiAuth(this IServiceCollection services, IConfiguration configuration)
         {
             var jwtoptions = configuration.GetRequiredSection("jwtoptions");

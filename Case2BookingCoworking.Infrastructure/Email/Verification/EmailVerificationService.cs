@@ -26,14 +26,14 @@ namespace Case2BookingCoworking.Infrastructure.Email.Verification
 
             Host = new HostDetails
             (
-                hostName: emailOptions.GetRequiredSection("SmtpMailHost").Value,
-                hostPort: int.Parse(emailOptions.GetRequiredSection("SmtpMailSecurePort").Value)
+                hostName: emailOptions.GetRequiredSection("Host").Value,
+                hostPort: int.Parse(emailOptions.GetRequiredSection("Port").Value)
             );
 
             EmailAgent = new EmailAgentCredentials
             (
-                name: emailOptions.GetRequiredSection("EmailAgentName").Value,
-                password: emailOptions.GetRequiredSection("EmailAgentPassword").Value
+                name: emailOptions.GetRequiredSection("AgentName").Value,
+                password: emailOptions.GetRequiredSection("AgentPassword").Value
             );
 
             _verificationCodeGenerator = verificationCodeGenerator;

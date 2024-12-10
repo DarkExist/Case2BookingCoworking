@@ -12,7 +12,7 @@ namespace Case2BookingCoworking.Infrastructure.Email.Verification.Depends
     {
         public VerificationMessage(string mailAgentName, string destMail, string code)
         {
-            From.Add(new MailboxAddress("Weight Control", mailAgentName));
+            From.Add(new MailboxAddress("BookingApp", mailAgentName));
             To.Add(new MailboxAddress("Получатель", destMail));
 
             Subject = "Код подтверждения";
