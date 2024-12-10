@@ -54,7 +54,7 @@ const MainPage: React.FC = () => {
       const newSlot = {
         startTime: values.time[0].format('HH:mm'),
         endTime: values.time[1].format('HH:mm'),
-        bookedBy: userData.name || 'Неизвестный пользователь',
+        bookedBy: userData.email || 'Неизвестный пользователь',
       };
 
       const updatedData = data.map((item) => {
