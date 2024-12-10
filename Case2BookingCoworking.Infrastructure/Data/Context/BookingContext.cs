@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Case2BookingCoworking.Core.Domain.Entities;
+using Case2BookingCoworking.Infrastructure.Data.Config;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -7,11 +9,17 @@ namespace Case2BookingCoworking.Infrastructure.Data.Context
     public class BookingContext : DbContext
     {
         protected readonly IConfiguration? _configuration;
+        DbSet<User> Users;
+        DbSet<Audience> Audiences;
+        DbSet<Order> Orders;
+        DbSet<Role> Roles;
+        DbSet<Profile> Profiles;
 
         public BookingContext(IConfiguration configuration)
         {
             _configuration = configuration;
         }
+        public BookingContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -20,7 +28,16 @@ namespace Case2BookingCoworking.Infrastructure.Data.Context
                 .UseLoggerFactory(CreateLoggerFactory())
                 .EnableSensitiveDataLogging();
         }
-        public ILoggerFactory CreateLoggerFactory() => LoggerFactory
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AudienceConfig());
+            modelBuilder.ApplyConfiguration(new OrderConfig());
+            modelBuilder.ApplyConfiguration(new ProfileConfig());
+            modelBuilder.ApplyConfiguration(new RoleConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new HistoryConfig());
+        }
+            public ILoggerFactory CreateLoggerFactory() => LoggerFactory
             .Create(builder => { builder.AddConsole(); });
     }
 }

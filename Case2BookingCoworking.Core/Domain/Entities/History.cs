@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Case2BookingCoworking.Core.Domain.Entities
 {
-	internal class History : Entity<Guid>
+	public class History : Entity<Guid>
 	{
-		public User user;
-		public Audience audience;
-		public Guid userId;
-		public string audienceNumber;
-		public string status;
+		public User User { get; set; }
+		public Audience Audience { get; set; }
+		public Guid UserId { get; set; }
+		public string AudienceNumber { get; set; }
+		public string Status { get; set; }
 	}
 }

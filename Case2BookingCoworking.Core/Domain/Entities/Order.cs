@@ -9,10 +9,10 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 {
 	public class Order : Entity<Guid>
 	{
-		public User user;
-		public Audience audience;
-		public Guid userId;
-		public string audienceNumber;
+		public User User;
+		public Audience Audience;
+		public Guid UserId;
+		public string AudienceNumber;
 
 	}
 }

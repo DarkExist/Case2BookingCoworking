@@ -1,4 +1,5 @@
 ﻿using Case2BookingCoworking.Application.Abstract;
+using Case2BookingCoworking.Core.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

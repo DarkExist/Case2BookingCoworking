@@ -1,9 +1,4 @@
 ﻿using CSharpFunctionalExtensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Case2BookingCoworking.Core.Domain.Entities
 {
@@ -14,5 +9,7 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 		public string Password { get; set; }
 		public Profile Profile { get; set; }
 		public List<Role> Roles { get; set; }
+
+		public List<Order> Orders { get; set; }
 	}
 }
