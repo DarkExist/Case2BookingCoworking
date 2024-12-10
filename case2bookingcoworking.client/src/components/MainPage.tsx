@@ -190,7 +190,7 @@ const MainPage: React.FC = () => {
             </Button>
           </Form.Item>
         </Form>
-      </Modal>
+          </Modal>
     </div>
   );
 };
