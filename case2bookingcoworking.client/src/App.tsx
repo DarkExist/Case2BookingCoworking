@@ -1,3 +1,4 @@
+import AdminPanel from './components/AdminPanel';
 import React, { useState } from 'react';
 import { Layout, Menu, Button } from 'antd';
 import MainPage from './components/MainPage';
@@ -28,6 +29,8 @@ const App: React.FC = () => {
         return <ProfilePage />;
       case 'home':
         return <MainPage />;
+      case 'admin':
+          return <AdminPanel />;
       default:
         return <MainPage />;
     }
@@ -65,6 +68,7 @@ const App: React.FC = () => {
               items={[
                 { key: 'home', label: 'Главная' },
                 { key: 'profile', label: 'Личный кабинет' },
+                { key: 'admin', label: 'Панель управления' },
               ]}
             />
 
