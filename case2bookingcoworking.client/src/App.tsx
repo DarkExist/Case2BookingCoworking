@@ -6,6 +6,7 @@ import ProfilePage from './components/ProfilePage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import AdminPanel from './components/AdminPanel';
+ 
 import './App.css'
 
 const { Sider, Content } = Layout;

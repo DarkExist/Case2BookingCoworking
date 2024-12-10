@@ -85,15 +85,6 @@ const RegistrationForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
           <Input.Password />
         </Form.Item>
 
-        {/* Запомнить меня */}
-        <Form.Item name="remember" valuePropName="checked">
-          <Checkbox
-            style={{
-              color: 'white',
-            }}
-          >Запомнить меня</Checkbox>
-        </Form.Item>
-
         {/* Кнопка отправки формы */}
         <Form.Item>
           <Button type="primary" htmlType="submit" block>

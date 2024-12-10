@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, TimePicker, Modal, Form, message, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import { getUserData } from '../PanelMain';
+import { getUserData, getFData } from '../PanelMain';
 
 const { RangePicker } = TimePicker;
 
@@ -54,7 +54,7 @@ const MainPage: React.FC = () => {
             const newSlot = {
                 startTime: values.time[0].format('HH:mm'),
                 endTime: values.time[1].format('HH:mm'),
-                bookedBy: userData.name || 'Неизвестный пользователь',
+                bookedBy: userData.email || 'Неизвестный пользователь',
             };
 
             const updatedData = data.map((item) => {
@@ -102,6 +102,8 @@ const MainPage: React.FC = () => {
         }
     };
 
+    const DataF = getFData()
+
     const columns: ColumnsType<Reservation> = [
         {
             title: 'Коворкинг',
@@ -119,8 +121,8 @@ const MainPage: React.FC = () => {
                         title={
                             <div>
                                 <p><strong>Имя:</strong> {slot.bookedBy}</p>
-                                {userData.phone && <p><strong>Телефон:</strong> {userData.phone}</p>}
-                                {userData.telegramTag && <p><strong>Telegram:</strong> {userData.telegramTag}</p>}
+                                {DataF[slot.bookedBy].phone && <p><strong>Телефон:</strong> {DataF[slot.bookedBy].phone}</p>}
+                                {DataF[slot.bookedBy].telegramTag && <p><strong>Telegram:</strong> {DataF[slot.bookedBy].telegramTag}</p>}
                             </div>
                         }
                     >
@@ -141,7 +143,8 @@ const MainPage: React.FC = () => {
 
 
                             {(JSON.parse(localStorage.getItem("user")!).name === slot.bookedBy
-                                || JSON.parse(localStorage.getItem("user")!).name === "admin")
+                                || JSON.parse(localStorage.getItem("user")!).name === "admin"
+                                || JSON.parse(localStorage.getItem("user")!).email === slot.bookedBy)
                                 && <Button
                                     type="link"
                                     danger
