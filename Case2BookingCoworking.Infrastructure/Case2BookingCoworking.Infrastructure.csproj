@@ -28,8 +28,4 @@
     <ProjectReference Include="..\Case2BookingCoworking.Core\Case2BookingCoworking.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Repos\" />
-  </ItemGroup>
-
 </Project>
