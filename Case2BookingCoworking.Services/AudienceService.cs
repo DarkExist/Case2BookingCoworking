@@ -30,8 +30,8 @@ namespace Case2BookingCoworking.Services
 		{
 			string audienceNumber = audienceRequest.audienceNumber;
 			int amountOfStudents = audienceRequest.amountOfStudents;
-			DateTime startOfBooking = audienceRequest.startOfBooking;
-			DateTime endOfBooking = audienceRequest.endOfBooking;
+			DateTime startOfBooking = DateTime.Parse(audienceRequest.startOfBooking);
+			DateTime endOfBooking = DateTime.Parse(audienceRequest.endOfBooking);
 
 			if ((endOfBooking - startOfBooking).TotalMinutes < 5)
 			{
@@ -61,7 +61,7 @@ namespace Case2BookingCoworking.Services
 
 			User user = errorOrUser.Value;
 
-			var errorOrAudience = await _audienceRepos.GetAudienceByNumberAsync(audienceNumber);
+			var errorOrAudience = await _audienceRepos.GetAudienceByNumberAsync(audienceNumber, cancellationToken);
 			if (errorOrAudience.IsError)
 			{
 				return errorOrAudience.Errors;
@@ -155,7 +155,7 @@ namespace Case2BookingCoworking.Services
 			audience.Number = createAudienceRequest.number;
 			audience.Orders = new List<Order>();
 			audience.Capacity = createAudienceRequest.capacity;
-			audience.Status = "WORKING";
+			audience.Status = createAudienceRequest.status;
 
 			foreach (var category in createAudienceRequest.eventTypes)
 			{

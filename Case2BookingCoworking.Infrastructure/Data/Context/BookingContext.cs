@@ -23,6 +23,7 @@ namespace Case2BookingCoworking.Infrastructure.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             var options = _configuration?.GetRequiredSection("ConnectionStrings");
             optionsBuilder.UseNpgsql(options?.GetRequiredSection("BookingApp").Value ?? "server=localhost, username=pgdamin")
                 .UseLoggerFactory(CreateLoggerFactory())

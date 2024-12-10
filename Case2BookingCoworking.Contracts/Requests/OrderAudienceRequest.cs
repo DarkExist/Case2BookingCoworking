@@ -9,7 +9,7 @@ namespace Case2BookingCoworking.Contracts.Requests
 	public record OrderAudienceRequest (
 		string audienceNumber,
 		int amountOfStudents,
-		DateTime startOfBooking,
-		DateTime endOfBooking
+		string startOfBooking,
+		string endOfBooking
 	);
 }

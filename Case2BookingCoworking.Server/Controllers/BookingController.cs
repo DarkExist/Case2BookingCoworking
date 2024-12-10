@@ -1,4 +1,5 @@
-﻿using Case2BookingCoworking.Contracts.Requests;
+﻿using Case2BookingCoworking.Application.Abstract.Services;
+using Case2BookingCoworking.Contracts.Requests;
 using Case2BookingCoworking.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,19 +11,38 @@ namespace Case2BookingCoworking.Server.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IAudienceService _audienceService;
-        public BookingController(IAudienceService audienceService) 
+        private readonly IOrderService _orderService;
+        public BookingController(IAudienceService audienceService, IOrderService orderService) 
         { 
             _audienceService = audienceService;
+            _orderService = orderService;
         }
+        private Guid ParseUserGuid()
+        {
+            var userClaim = HttpContext.User.Claims.Where(c => c.Type == "UserId").First().Value;
+            return Guid.Parse(userClaim);
+
+        }
+        [HttpPost("CreateNewOrder")]
+        public async Task<IActionResult> CreateOrder(OrderAudienceRequest orderRequest,CancellationToken cancellationToken)
+        {
+            var userId = ParseUserGuid();
+            var result = await _orderService.CreateOrder(orderRequest, userId, cancellationToken);
+            if (result.IsError)
+                return BadRequest(result);
+            return Ok(result.Value);
+        }
+
         [HttpGet("GetBookedAudiences")]
         public async Task<IActionResult> GetBookedAudiences(CancellationToken cancellationToken)
         {
             var result = await _audienceService.GetBookedAudiences(cancellationToken);
             return Ok(result.Value);
         }
-        [HttpGet("CheckBookAudience")]
-        public async Task<IActionResult> CheckBookAudience(OrderAudienceRequest audienceRequest, Guid userId,CancellationToken cancellationToken)
+        [HttpPost("CheckBookAudience")]
+        public async Task<IActionResult> CheckBookAudience(OrderAudienceRequest audienceRequest, CancellationToken cancellationToken)
         {
+            var userId = ParseUserGuid();
             var result = await _audienceService.CheckBookAudience(audienceRequest, userId, cancellationToken);
             var audience = result.Value;
             return Ok(audience);

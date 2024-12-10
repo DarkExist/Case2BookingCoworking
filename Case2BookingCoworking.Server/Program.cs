@@ -39,7 +39,6 @@ namespace Case2BookingCoworking.Server
             app.UseHttpsRedirection();
 
             //app.UseAuthorization();
-
             app.UseSession();
             app.MapControllers();
 

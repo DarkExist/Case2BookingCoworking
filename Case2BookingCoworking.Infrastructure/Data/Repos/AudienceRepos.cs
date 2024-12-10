@@ -11,11 +11,11 @@ namespace Case2BookingCoworking.Infrastructure.Data.Repos
     {
         public AudienceRepos(BookingContext context) : base(context) { }
 
-		public async Task<ErrorOr<Audience>> GetAudienceByNumberAsync(string number)
+		public async Task<ErrorOr<Audience>> GetAudienceByNumberAsync(string number, CancellationToken cancellationToken)
 		{
 			try
 			{
-				return await _context.Audiences.FirstAsync(a => a.Number == number);
+				return await _context.Audiences.Where(a=> a.Number == number).FirstOrDefaultAsync(cancellationToken);
 			}
 			catch (OperationCanceledException)
 			{

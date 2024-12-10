@@ -4,6 +4,7 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 {
     public class Order : Entity<Guid>
     {
+        public Order() { Id = Guid.NewGuid(); }
         public User User { get; set; }
         public Audience Audience { get; set; }
         public Guid UserId { get; set; }

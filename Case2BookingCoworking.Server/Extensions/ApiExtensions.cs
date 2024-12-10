@@ -12,6 +12,7 @@ namespace Case2BookingCoworking.Server.Extensions
         {
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAudienceService, AudienceService>();
+            services.AddTransient<IOrderService, OrderService>();
         }
         public static void AddApiAuth(this IServiceCollection services, IConfiguration configuration)
         {
