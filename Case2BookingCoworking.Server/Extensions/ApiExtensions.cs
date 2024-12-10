@@ -42,16 +42,22 @@ namespace Case2BookingCoworking.Server.Extensions
                     options.AddPolicy("admin",
                         policy =>
                         {
-                            policy.RequireRole("admin");
+                            policy.RequireRole("ADMIN");
 
                         });
 
                     options.AddPolicy("user",
                         policy =>
                         {
-                            policy.RequireRole("admin", "user");
+                            policy.RequireRole("ADMIN", "USER","TEACHER");
 
                         });
+                    options.AddPolicy("teacher",
+                        policy =>
+                        {
+                            policy.RequireRole("ADMIN", "TEACHER");
+                        }
+                        );
                 }
              );
         }

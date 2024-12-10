@@ -1,4 +1,5 @@
 
+using Case2BookingCoworking.Infrastructure;
 namespace Case2BookingCoworking.Server
 {
     public class Program
@@ -13,6 +14,9 @@ namespace Case2BookingCoworking.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSecurity();
+            builder.Services.AddPersistance();
 
             var app = builder.Build();
 
