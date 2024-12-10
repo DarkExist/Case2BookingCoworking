@@ -1,56 +1,96 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import { Layout, Menu, Button } from 'antd';
+import MainPage from './components/MainPage';
+import ProfilePage from './components/ProfilePage';
+import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
+import './App.css'
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
+const { Sider, Content } = Layout;
 
-function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
+const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false); // Флаг для переключения между входом и регистрацией
+  const [selectedMenu, setSelectedMenu] = useState('home');
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setSelectedMenu('home');
+  };
 
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
-    return (
-        <div>
-            <h1 id="tableLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
-    );
-
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        const data = await response.json();
-        setForecasts(data);
+  const renderContent = () => {
+    switch (selectedMenu) {
+      case 'profile':
+        return <ProfilePage />;
+      case 'home':
+        return <MainPage />;
+      default:
+        return <MainPage />;
     }
-}
+  };
+
+  return (
+    <Layout style={{ margin: '0', minHeight: '100vh', minWidth: '100vw', background: 'rgb(44, 44, 44)' }}>
+      {!isLoggedIn ? (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <div style={{ maxWidth: '300px', width: '100%' }}>
+            {isRegistering ? (
+              <RegisterForm onRegister={() => setIsRegistering(false)} />
+            ) : (
+              <LoginForm onLogin={handleLogin} onSwitchToRegister={() => setIsRegistering(true)} />
+            )}
+          </div>
+        </div>
+      ) : (
+        <Layout>
+          <Sider
+            width={200}
+            style={{
+              background: '#001529',
+              color: 'white',
+              position: 'relative',
+            }}
+          >
+            {/* Меню навигации */}
+            <Menu
+              theme="dark"
+              mode="inline"
+              defaultSelectedKeys={['home']}
+              selectedKeys={[selectedMenu]}
+              onClick={(e) => setSelectedMenu(e.key)}
+              items={[
+                { key: 'home', label: 'Главная' },
+                { key: 'profile', label: 'Личный кабинет' },
+              ]}
+            />
+
+            {/* Кнопка "Выйти" */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '16px',
+                left: '16px',
+                right: '16px',
+              }}
+            >
+              <Button type="primary" danger block onClick={handleLogout}>
+                Выйти
+              </Button>
+            </div>
+          </Sider>
+          <Layout>
+            <Content style={{ margin: '16px', padding: '16px', background: '#fff' }}>
+              {renderContent()}
+            </Content>
+          </Layout>
+        </Layout>
+      )}
+    </Layout>
+  );
+};
 
 export default App;
