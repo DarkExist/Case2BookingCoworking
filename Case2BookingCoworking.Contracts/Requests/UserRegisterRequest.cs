@@ -13,6 +13,7 @@ namespace Case2BookingCoworking.Contracts.Requests
          [EmailAddress]
         string Email,
          [MinLength(8)]
-        string Password
+        string Password,
+         List<string> Roles
      );
 }

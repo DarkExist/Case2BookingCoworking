@@ -1,4 +1,4 @@
-
+using Case2BookingCoworking.Server.Extensions;
 using Case2BookingCoworking.Infrastructure;
 namespace Case2BookingCoworking.Server
 {
@@ -17,6 +17,12 @@ namespace Case2BookingCoworking.Server
 
             builder.Services.AddSecurity();
             builder.Services.AddPersistance();
+            builder.Services.AddBookingServices();
+            builder.Services.AddApiAuth(builder.Configuration);
+            builder.Services.AddEmailVerification();
+
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -32,9 +38,9 @@ namespace Case2BookingCoworking.Server
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
-
+            app.UseSession();
             app.MapControllers();
 
             app.MapFallbackToFile("/index.html");
