@@ -9,7 +9,7 @@ using Case2BookingCoworking.Application.Abstract.Services;
 
 namespace Case2BookingCoworking.Services
 {
-	internal class AudienceService : IAudienceService
+	public class AudienceService : IAudienceService
 	{
 		private readonly IAudienceRepos _audienceRepos;
 		private readonly IOrderRepos _orderRepos;
@@ -25,13 +25,13 @@ namespace Case2BookingCoworking.Services
 			_historyRepos = historyRepos;
 		}
 
-		public async Task<ErrorOr<Success>> BookAudience(AudienceRequest audienceRequest, Guid userId,
+		public async Task<ErrorOr<Success>> CheckBookAudience(OrderAudienceRequest audienceRequest, Guid userId,
 			CancellationToken cancellationToken)
 		{
 			string audienceNumber = audienceRequest.audienceNumber;
 			int amountOfStudents = audienceRequest.amountOfStudents;
-			DateTime startOfBooking = audienceRequest.startOfBooking;
-			DateTime endOfBooking = audienceRequest.endOfBooking;
+			DateTime startOfBooking = DateTime.Parse(audienceRequest.startOfBooking);
+			DateTime endOfBooking = DateTime.Parse(audienceRequest.endOfBooking);
 
 			if ((endOfBooking - startOfBooking).TotalMinutes < 5)
 			{
@@ -61,7 +61,7 @@ namespace Case2BookingCoworking.Services
 
 			User user = errorOrUser.Value;
 
-			var errorOrAudience = await _audienceRepos.GetAudienceByNumberAsync(audienceNumber);
+			var errorOrAudience = await _audienceRepos.GetAudienceByNumberAsync(audienceNumber, cancellationToken);
 			if (errorOrAudience.IsError)
 			{
 				return errorOrAudience.Errors;
@@ -94,7 +94,7 @@ namespace Case2BookingCoworking.Services
 
 			foreach (var item in errorOrListAudiences.Value)
 			{
-				if (item.Status != "РАБОТАЕТ")
+				if (item.Status == "WORKING")
 				{
 					numbersOfAudiences.Add(item.Number);
 				}
@@ -102,7 +102,7 @@ namespace Case2BookingCoworking.Services
 			AudienceAvailableResponse responce = new AudienceAvailableResponse(numbersOfAudiences);
 			return responce;
 		}
-		public async Task<ErrorOr<AudienceBookedResponce>> GetBookedAudiences(CancellationToken cancellationToken)
+		public async Task<ErrorOr<AudienceBookedResponse>> GetBookedAudiences(CancellationToken cancellationToken)
 		{
 			var errorOrListAudiences = await GetAvailableAudiences(cancellationToken);
 			if (errorOrListAudiences.IsError)
@@ -128,7 +128,7 @@ namespace Case2BookingCoworking.Services
 				}
 			}
 
-			return new AudienceBookedResponce(bookedAudiencesObject);
+			return new AudienceBookedResponse(bookedAudiencesObject);
 		}
 		public async Task<ErrorOr<Success>> CancelBooking(Guid orderId, CancellationToken cancellationToken)
 		{
@@ -147,20 +147,17 @@ namespace Case2BookingCoworking.Services
 			return result;
 		}
 
-		public Task<ErrorOr<Success>> UpdateBookedAudiences() { throw new NotImplementedException(); }
 		public async Task<ErrorOr<Success>> AddNewAudience(
-			List<string> categories,
-			string number,
-			int capacity,
-			CancellationToken cancellationToken)
+            CreateAudienceRequest createAudienceRequest,
+            CancellationToken cancellationToken)
 		{
 			Audience audience = new Audience();
-			audience.Number = number;
+			audience.Number = createAudienceRequest.number;
 			audience.Orders = new List<Order>();
-			audience.Capacity = capacity;
-			audience.Status = "РАБОТАЕТ";
+			audience.Capacity = createAudienceRequest.capacity;
+			audience.Status = createAudienceRequest.status;
 
-			foreach (var category in categories)
+			foreach (var category in createAudienceRequest.eventTypes)
 			{
 				audience.Type.Add(new AudienceType(category));
 			}
@@ -168,7 +165,6 @@ namespace Case2BookingCoworking.Services
 			if (result.IsError) return result.Errors;
 			return Result.Success;
 		}
-		public Task<ErrorOr<Success>> RemoveAudience() { throw new NotImplementedException(); }
 
 		private async Task<ErrorOr<bool>> _IsIntervalAvailable(string audienceNumber,
 			DateTime startOfBooking, DateTime endOfBooking, CancellationToken cancellationToken)
@@ -190,7 +186,8 @@ namespace Case2BookingCoworking.Services
 			{
 				if (
 					(startOfBooking >= interval.Item1 && startOfBooking <= interval.Item2)
-					|| (endOfBooking >= interval.Item1 && endOfBooking <= interval.Item2)
+					|| (endOfBooking >= interval.Item1 && endOfBooking <= interval.Item2) ||
+					(startOfBooking <= interval.Item1 && endOfBooking >= interval.Item2)
 					)
 				{
 					return false;
@@ -198,5 +195,15 @@ namespace Case2BookingCoworking.Services
 			}
 			return true;
 		}
-	}
+
+        public Task<ErrorOr<Success>> RemoveAudience(Guid audienceId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ErrorOr<Success>> UpdateBookedAudiences(Guid audienceId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

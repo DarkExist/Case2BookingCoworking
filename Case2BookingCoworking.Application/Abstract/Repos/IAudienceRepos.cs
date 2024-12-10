@@ -5,7 +5,7 @@ namespace Case2BookingCoworking.Application.Abstract.Repos
 {
     public interface IAudienceRepos : IRepos<Audience>
     {
-		public Task<ErrorOr<Audience>> GetAudienceByNumberAsync(string number);
+		public Task<ErrorOr<Audience>> GetAudienceByNumberAsync(string number, CancellationToken cancellationToken);
 
 	}
 }

@@ -28,7 +28,7 @@ const ProfilePage: React.FC = () => {
         layout="vertical"
       >
         <Form.Item label="Email" name="email">
-          <p style={{ color: 'gray', fontSize: '12px' }}>Мы не будем рассылать вам спам.</p>
+          <p style={{ color: 'black', fontSize: '18px' }}>{userData.email}</p>
         </Form.Item>
 
         <Form.Item label="Имя" name="name" rules={[{ required: true, message: 'Пожалуйста, введите ваше имя!' }]}>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Case2BookingCoworking.Contracts.Responses
 {
-	public record AudienceBookedResponce
+	public record AudienceBookedResponse
 	(
 		Dictionary<string, List<Tuple<DateTime, DateTime>>> bookedAudiences
 		);
