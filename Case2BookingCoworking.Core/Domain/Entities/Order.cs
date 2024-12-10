@@ -13,6 +13,7 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 		public Audience Audience;
 		public Guid UserId;
 		public string AudienceNumber;
-
+		public DateTime StartOfBooking;
+		public DateTime EndOfBooking;
 	}
 }

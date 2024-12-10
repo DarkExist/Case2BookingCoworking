@@ -14,5 +14,8 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 		public Guid UserId { get; set; }
 		public string AudienceNumber { get; set; }
 		public string Status { get; set; }
+		public DateTime StartOfBooking;
+		public DateTime EndOfBooking;
+		public DateTime RealEnd;
 	}
 }
