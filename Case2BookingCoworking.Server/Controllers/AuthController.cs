@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Case2BookingCoworking.Application.Abstract.Services;
 using Case2BookingCoworking.Contracts.Requests;
+using Microsoft.AspNetCore.Cors;
 namespace Case2BookingCoworking.Server.Controllers
 {
     [Route("api/[controller]")]
@@ -19,6 +20,7 @@ namespace Case2BookingCoworking.Server.Controllers
         }
 
         [HttpPost("beginRegistration")]
+        [DisableCors]
         public async Task<ActionResult> BeginRegistration(UserRegisterRequest registerRequest, CancellationToken cancellationToken)
         {
             HttpContext.Session.SetString(UserDTO, JsonSerializer.Serialize(registerRequest));
@@ -50,6 +52,7 @@ namespace Case2BookingCoworking.Server.Controllers
         }
 
         [HttpPost("endRegistration")]
+        [DisableCors]
         public async Task<ActionResult> EndRegistration(string code, CancellationToken cancellationToken)
         {
             if (HttpContext.Session.Id == HttpContext.Session.GetString(SessionId))
@@ -72,6 +75,7 @@ namespace Case2BookingCoworking.Server.Controllers
         }
 
         [HttpPost("login")]
+        [DisableCors]
         public async Task<ActionResult> Login(UserLoginRequest loginRequest)
         {
             var userToken = await userService.Login(loginRequest.Email, loginRequest.Password);

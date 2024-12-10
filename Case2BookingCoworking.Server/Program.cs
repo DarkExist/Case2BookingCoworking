@@ -35,7 +35,7 @@ namespace Case2BookingCoworking.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors();
             app.UseHttpsRedirection();
 
             //app.UseAuthorization();

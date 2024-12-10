@@ -9,11 +9,11 @@ namespace Case2BookingCoworking.Infrastructure.Data.Context
     public class BookingContext : DbContext
     {
         protected readonly IConfiguration? _configuration;
-        public DbSet<User> Users;
-        public DbSet<Audience> Audiences;
-        public DbSet<Order> Orders;
-        public DbSet<Role> Roles;
-        public DbSet<Profile> Profiles;
+        public DbSet<User> Users { get; set; }
+        public DbSet<Audience> Audiences { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
         public BookingContext(IConfiguration configuration)
         {
