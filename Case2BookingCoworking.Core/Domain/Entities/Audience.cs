@@ -12,6 +12,6 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 		public string Number {  get; set; }
 		public int Capacity { get; set; }
 		public AudienceType Type { get; set; }
-		
+		public string Status { get; set; }
 	}
 }
