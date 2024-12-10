@@ -32,11 +32,19 @@ export const saveFData = (name: string, email: string, password: string, phone: 
   
     // Сохраняем обновленные данные обратно в localStorage
     localStorage.setItem('DataF', JSON.stringify(DataF));
-  };
-  
+};
 
 export const getFData = () => {
     const DataF = localStorage.getItem('DataF');
+    console.log(DataF);
+    if (DataF) {
+        return JSON.parse(DataF);
+    }
+    return null;
+};
+
+export const getReservations = () => {
+    const DataF = localStorage.getItem('Reservations');
     console.log(DataF);
     if (DataF) {
         return JSON.parse(DataF);
