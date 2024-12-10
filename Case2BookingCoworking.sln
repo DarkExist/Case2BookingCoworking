@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Case2BookingCoworking.Server", "Case2BookingCoworking.Server\Case2BookingCoworking.Server.csproj", "{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "case2bookingcoworking.client", "case2bookingcoworking.client\case2bookingcoworking.client.esproj", "{75871FF3-18FC-4E21-9768-49202A5062E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75871FF3-18FC-4E21-9768-49202A5062E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75871FF3-18FC-4E21-9768-49202A5062E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75871FF3-18FC-4E21-9768-49202A5062E8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{75871FF3-18FC-4E21-9768-49202A5062E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75871FF3-18FC-4E21-9768-49202A5062E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75871FF3-18FC-4E21-9768-49202A5062E8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9C3AAC2-1289-4EA4-BFE8-32488399CA67}
+	EndGlobalSection
+EndGlobal

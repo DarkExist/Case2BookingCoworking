@@ -1,0 +1,6 @@
+@Case2BookingCoworking.Server_HostAddress = http://localhost:5135
+
+GET {{Case2BookingCoworking.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
