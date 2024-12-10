@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Case2BookingCoworking.Contracts\Case2BookingCoworking.Contracts.csproj" />
     <ProjectReference Include="..\Case2BookingCoworking.Core\Case2BookingCoworking.Core.csproj" />
   </ItemGroup>
 

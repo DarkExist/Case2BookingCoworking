@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Case2BookingCoworking.Application\Case2BookingCoworking.Application.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,14 +1,17 @@
-﻿namespace Case2BookingCoworking.Services
-{
-    internal class AudienceService
-    {
-        public void BookAudience() { throw new NotImplementedException(); }
-        public void GetAvailableAudiences() { throw new NotImplementedException(); }
-        public void GetBookedAudiences() { throw new NotImplementedException(); }
-        public void CancelBooking() { throw new NotImplementedException(); }
+﻿using Case2BookingCoworking.Contracts.Responses;
+using ErrorOr;
 
-        public void UpdateBookedAudiences() { throw new NotImplementedException(); }
-        public void AddNewAudience() { throw new NotImplementedException(); }
-        public void RemoveAudience() { throw new NotImplementedException(); }
+namespace Case2BookingCoworking.Services
+{
+    internal class AudienceService : IAudienceService
+    {
+        public Task<ErrorOr<Success>> BookAudience() { throw new NotImplementedException(); }
+        public Task<ErrorOr<List<AudienceResponse>>> GetAvailableAudiences() { throw new NotImplementedException(); }
+        public Task<ErrorOr<List<AudienceResponse>>> GetBookedAudiences() { throw new NotImplementedException(); }
+        public Task<ErrorOr<Success>> CancelBooking() { throw new NotImplementedException(); }
+
+        public Task<ErrorOr<Success>> UpdateBookedAudiences() { throw new NotImplementedException(); }
+        public Task<ErrorOr<AudienceResponse>> AddNewAudience() { throw new NotImplementedException(); }
+        public Task<ErrorOr<Success>> RemoveAudience() { throw new NotImplementedException(); }
     }
 }

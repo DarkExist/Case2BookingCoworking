@@ -55,4 +55,5 @@ namespace Case2BookingCoworking.Server.Extensions
                 }
              );
         }
+    }
 }

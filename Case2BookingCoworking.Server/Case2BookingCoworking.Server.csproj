@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -31,6 +31,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Case2BookingCoworking.Contracts\Case2BookingCoworking.Contracts.csproj" />
     <ProjectReference Include="..\Case2BookingCoworking.Infrastructure\Case2BookingCoworking.Infrastructure.csproj" />
+    <ProjectReference Include="..\Case2BookingCoworking.Services\Case2BookingCoworking.Services.csproj" />
   </ItemGroup>
 
 </Project>

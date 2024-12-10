@@ -6,8 +6,8 @@ namespace Case2BookingCoworking.Server.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        [HttpPost]
-        public Task<ActionResult> Register
+        //[HttpPost]
+        //public Task<ActionResult> Register
 
     }
 }
