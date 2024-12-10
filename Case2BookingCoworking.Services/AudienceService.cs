@@ -14,12 +14,15 @@ namespace Case2BookingCoworking.Services
 		private readonly IAudienceRepos _audienceRepos;
 		private readonly IOrderRepos _orderRepos;
 		private readonly IUserRepos _userRepos;
+		private readonly IHistoryRepos _historyRepos;
 
-		public AudienceService(IAudienceRepos audienceRepos, IOrderRepos orderRepos, IUserRepos userRepos)
+		public AudienceService(IAudienceRepos audienceRepos, IOrderRepos orderRepos,
+			IUserRepos userRepos, IHistoryRepos historyRepos)
 		{
 			_audienceRepos = audienceRepos;
 			_orderRepos = orderRepos;
 			_userRepos = userRepos;
+			_historyRepos = historyRepos;
 		}
 
 		public async Task<ErrorOr<Success>> BookAudience(AudienceRequest audienceRequest, Guid userId,
@@ -127,10 +130,44 @@ namespace Case2BookingCoworking.Services
 
 			return new AudienceBookedResponce(bookedAudiencesObject);
 		}
-		public Task<ErrorOr<Success>> CancelBooking() { throw new NotImplementedException(); }
+		public async Task<ErrorOr<Success>> CancelBooking(Guid orderId, CancellationToken cancellationToken)
+		{
+			var errorOrOrder = await _orderRepos.GetByIdAsync(orderId, cancellationToken);
+			if (errorOrOrder.IsError) { return errorOrOrder.Errors; }
+			Order order = errorOrOrder.Value;
+
+			History historyOrder = new History();
+			historyOrder.User = order.User;
+			historyOrder.Audience = order.Audience;
+			historyOrder.UserId = order.UserId;
+			historyOrder.AudienceNumber = order.AudienceNumber;
+			historyOrder.Status = "Закрыт";
+			var result = await _historyRepos.AddAsync(historyOrder, cancellationToken);
+			if (result.IsError) { return result.Errors; }
+			return result;
+		}
 
 		public Task<ErrorOr<Success>> UpdateBookedAudiences() { throw new NotImplementedException(); }
-		public Task<ErrorOr<AudienceAvailableResponse>> AddNewAudience() { throw new NotImplementedException(); }
+		public async Task<ErrorOr<Success>> AddNewAudience(
+			List<string> categories,
+			string number,
+			int capacity,
+			CancellationToken cancellationToken)
+		{
+			Audience audience = new Audience();
+			audience.Number = number;
+			audience.Orders = new List<Order>();
+			audience.Capacity = capacity;
+			audience.Status = "РАБОТАЕТ";
+
+			foreach (var category in categories)
+			{
+				audience.Type.Add(new AudienceType(category));
+			}
+			var result = await _audienceRepos.AddAsync(audience, cancellationToken);
+			if (result.IsError) return result.Errors;
+			return Result.Success;
+		}
 		public Task<ErrorOr<Success>> RemoveAudience() { throw new NotImplementedException(); }
 
 		private async Task<ErrorOr<bool>> _IsIntervalAvailable(string audienceNumber,
@@ -161,17 +198,6 @@ namespace Case2BookingCoworking.Services
 				}
 			}
 			return true;
-		}
-
-
-		public Task<ErrorOr<List<AudienceAvailableResponse>>> GetAvailableAudiences()
-		{
-			throw new NotImplementedException();
-		}
-
-		public Task<ErrorOr<List<AudienceAvailableResponse>>> GetBookedAudiences()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }
