@@ -20,9 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Case2BookingCoworking.Application\Case2BookingCoworking.Application.csproj" />
     <ProjectReference Include="..\case2bookingcoworking.client\case2bookingcoworking.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\Case2BookingCoworking.Contracts\Case2BookingCoworking.Contracts.csproj" />
+    <ProjectReference Include="..\Case2BookingCoworking.Infrastructure\Case2BookingCoworking.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

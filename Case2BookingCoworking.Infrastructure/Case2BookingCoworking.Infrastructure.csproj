@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Case2BookingCoworking.Application\Case2BookingCoworking.Application.csproj" />
+    <ProjectReference Include="..\Case2BookingCoworking.Core\Case2BookingCoworking.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Case2BookingCoworking.Server", "Case2BookingCoworking.Server\Case2BookingCoworking.Server.csproj", "{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Case2BookingCoworking.Server", "Case2BookingCoworking.Server\Case2BookingCoworking.Server.csproj", "{0DDC20A5-C0AB-4D4C-B39A-CC0C9858F311}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "case2bookingcoworking.client", "case2bookingcoworking.client\case2bookingcoworking.client.esproj", "{75871FF3-18FC-4E21-9768-49202A5062E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Case2BookingCoworking.Core", "Case2BookingCoworking.Core\Case2BookingCoworking.Core.csproj", "{8E9AC2BA-716B-4549-A638-5AB9169631A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Case2BookingCoworking.Application", "Case2BookingCoworking.Application\Case2BookingCoworking.Application.csproj", "{513F72E7-BB50-4C61-A334-17CE9019099A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Case2BookingCoworking.Infrastructure", "Case2BookingCoworking.Infrastructure\Case2BookingCoworking.Infrastructure.csproj", "{FF7E098F-3E19-4473-906C-74A47650171E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Case2BookingCoworking.Contracts", "Case2BookingCoworking.Contracts\Case2BookingCoworking.Contracts.csproj", "{F1A4B9E8-BA36-4B5B-A2D2-EF0F16B3970D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +31,22 @@ Global
 		{75871FF3-18FC-4E21-9768-49202A5062E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75871FF3-18FC-4E21-9768-49202A5062E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75871FF3-18FC-4E21-9768-49202A5062E8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8E9AC2BA-716B-4549-A638-5AB9169631A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E9AC2BA-716B-4549-A638-5AB9169631A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E9AC2BA-716B-4549-A638-5AB9169631A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E9AC2BA-716B-4549-A638-5AB9169631A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513F72E7-BB50-4C61-A334-17CE9019099A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513F72E7-BB50-4C61-A334-17CE9019099A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513F72E7-BB50-4C61-A334-17CE9019099A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513F72E7-BB50-4C61-A334-17CE9019099A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF7E098F-3E19-4473-906C-74A47650171E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF7E098F-3E19-4473-906C-74A47650171E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF7E098F-3E19-4473-906C-74A47650171E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF7E098F-3E19-4473-906C-74A47650171E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A4B9E8-BA36-4B5B-A2D2-EF0F16B3970D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A4B9E8-BA36-4B5B-A2D2-EF0F16B3970D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A4B9E8-BA36-4B5B-A2D2-EF0F16B3970D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A4B9E8-BA36-4B5B-A2D2-EF0F16B3970D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
