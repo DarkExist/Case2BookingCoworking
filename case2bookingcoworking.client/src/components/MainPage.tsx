@@ -189,7 +189,7 @@ const MainPage: React.FC = () => {
             label="Выберите время"
             rules={[{ required: true, message: 'Пожалуйста, выберите время!' }]}
           >
-            <RangePicker format="HH:mm" minuteStep = {5}/>
+            <RangePicker format="HH:mm" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block>

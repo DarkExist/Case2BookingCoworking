@@ -1,3 +1,17 @@
+import { message } from "antd";
+
+interface TimeSlot {
+    startTime: string;
+    endTime: string;
+    bookedBy: string;
+}
+
+interface Reservation {
+    id: number;
+    coworking: string;
+    timeSlots: TimeSlot[];
+}
+
 export const saveUserData = (name: string, email: string, password: string, phone: string, telegramTag: string) => {
     const userData = { name, email, password, phone, telegramTag };
     localStorage.setItem('user', JSON.stringify(userData));
@@ -50,4 +64,42 @@ export const getReservations = () => {
         return JSON.parse(DataF);
     }
     return null;
+};
+
+export const setAllReservations = (data: Reservation[]) => {
+    localStorage.setItem('Reservations', JSON.stringify(data));
+};
+
+export const addReservation = (
+    coworkingId: number,
+    newSlot: TimeSlot,
+    reservations: Reservation[],
+    setReservations: (data: Reservation[]) => void
+    ) => {
+    // Проверка пересечений с существующими интервалами
+    const checkOverlap = (existingSlots: TimeSlot[], newSlot: TimeSlot) => {
+        return existingSlots.some(
+        (slot) =>
+            newSlot.startTime < slot.endTime && newSlot.endTime > slot.startTime
+        );
+    };
+
+    const updatedReservations = reservations.map((reservation) => {
+        if (reservation.id === coworkingId) {
+        if (checkOverlap(reservation.timeSlots, newSlot)) {
+            message.error('Данный временной интервал уже занят!');
+            return reservation;
+        }
+        return {
+            ...reservation,
+            timeSlots: [...reservation.timeSlots, newSlot],
+        };
+        }
+        return reservation;
+    });
+
+    // Обновляем данные в состоянии и localStorage
+    setReservations(updatedReservations);
+    localStorage.setItem('reservations', JSON.stringify(updatedReservations));
+    message.success('Бронирование успешно добавлено!');
 };
