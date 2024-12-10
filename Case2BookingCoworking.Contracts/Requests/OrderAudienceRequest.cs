@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Case2BookingCoworking.Contracts.Requests
 {
-	public record AudienceRequest (
+	public record OrderAudienceRequest (
 		string audienceNumber,
 		int amountOfStudents,
 		DateTime startOfBooking,
