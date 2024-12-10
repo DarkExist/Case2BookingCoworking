@@ -15,5 +15,6 @@ namespace Case2BookingCoworking.Core.Domain.Entities
 
 		public List<Order> Orders { get; set; }
 		
+		public string Status { get; set; }
 	}
 }
