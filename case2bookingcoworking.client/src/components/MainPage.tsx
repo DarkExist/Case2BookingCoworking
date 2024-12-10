@@ -137,14 +137,19 @@ const MainPage: React.FC = () => {
             >
               <span>
                 {slot.startTime} - {slot.endTime}
-              </span>
-              <Button
-                type="link"
-                danger
-                onClick={() => handleDeleteTimeSlot(record.id, index)}
-              >
-                Удалить
-              </Button>
+                    </span>
+                    
+
+                    {(JSON.parse(localStorage.getItem("user")!).name === slot.bookedBy
+                        || JSON.parse(localStorage.getItem("user")!).name === "admin")
+                        && <Button
+                        type="link"
+                        danger
+                        onClick={() => handleDeleteTimeSlot(record.id, index)}
+                    >
+                        Удалить
+                    </Button>}
+              
             </div>
           </Tooltip>
         )),
