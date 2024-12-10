@@ -198,7 +198,6 @@ const MainPage: React.FC = () => {
           </Form.Item>
         </Form>
           </Modal>
-          <ExportWithFilter></ExportWithFilter>
     </div>
   );
 };
