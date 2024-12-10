@@ -61,7 +61,7 @@ const App: React.FC = () => {
               mode="inline"
               defaultSelectedKeys={['home']}
               selectedKeys={[selectedMenu]}
-              onClick={(e) => setSelectedMenu(e.key)}
+              onClick={(e: any) => setSelectedMenu(e.key)}
               items={[
                 { key: 'home', label: 'Главная' },
                 { key: 'profile', label: 'Личный кабинет' },
