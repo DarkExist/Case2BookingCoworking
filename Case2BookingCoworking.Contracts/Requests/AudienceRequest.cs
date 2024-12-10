@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Case2BookingCoworking.Contracts.Requests
+{
+	public record AudienceRequest (
+		string audienceNumber,
+		int amountOfStudents,
+		DateTime startOfBooking,
+		DateTime endOfBooking
+	);
+}

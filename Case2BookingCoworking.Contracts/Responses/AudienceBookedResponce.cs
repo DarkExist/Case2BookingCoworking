@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Case2BookingCoworking.Contracts.Responses
 {
-    public record AudienceResponse
-    (
-
-        );
+	public record AudienceBookedResponce
+	(
+		Dictionary<string, List<Tuple<DateTime, DateTime>>> bookedAudiences
+		);
 }
