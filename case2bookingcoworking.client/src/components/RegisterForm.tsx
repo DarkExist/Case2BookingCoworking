@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import { saveUserData, saveFData } from '../PanelMain';
 
 interface RegisterFormProps {
@@ -7,13 +8,16 @@ interface RegisterFormProps {
 }
 
 const RegistrationForm: React.FC<RegisterFormProps> = ({ onRegister }) => {
-  const [form] = Form.useForm();
+    const [form] = Form.useForm();
+    const navigate = useNavigate();
 
   const handleSubmit = async (values: any) => {
     message.success('Регистрация успешна!');
     saveUserData(values.username, values.email, values.password, '', '');
     saveFData(values.username, values.email, values.password, '', '');
-    console.log(values);
+      console.log(values);
+      navigate("/login")
+      
   };
 
   return (

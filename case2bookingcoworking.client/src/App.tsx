@@ -5,6 +5,7 @@ import MainPage from './components/MainPage';
 import ProfilePage from './components/ProfilePage';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import AdminPanel from './components/AdminPanel';
 import './App.css'
 
 const { Sider, Content } = Layout;
@@ -67,6 +68,10 @@ const App: React.FC = () => {
                                 <Menu.Item key="profile">
                                     <Link to="/profile">Личный кабинет</Link>
                                 </Menu.Item>
+                                {JSON.parse(localStorage.getItem("user")!).name === "admin" &&
+                                    <Menu.Item key="admin">
+                                        <Link to="/admin">Админ панель</Link>
+                                    </Menu.Item>}
                             </Menu>
 
                             {/* Кнопка "Выйти" */}
@@ -88,6 +93,7 @@ const App: React.FC = () => {
                                 <Routes>
                                     <Route path="/" element={<MainPage />} />
                                     <Route path="/profile" element={<ProfilePage />} />
+                                    <Route path="/admin" element={<AdminPanel />} />
                                     <Route path="*" element={<Navigate to="/" replace />} />
                                 </Routes>
                             </Content>
