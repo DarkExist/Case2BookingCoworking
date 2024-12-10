@@ -41,24 +41,37 @@ const ExportWithFilter = () => {
 
     return (
         <div>
-            <button style={{color:'white'}} onClick={() => setModalIsOpen(true)}>Export</button>
+            <button style={{ color: 'white' }} onClick={() => setModalIsOpen(true)}>Export</button>
 
-            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-                <h2>Export to excel</h2>
-                <label>
-                    TimeStart:
-                    <input style={{ color: 'white' }} type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-                </label>
-                <label>
-                    TimeEnd:
-                    <input style={{ color: 'white' }} type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-                </label>
-                <label>
-                    Audience:
-                    <input style={{ color: 'black', backgroundColor:'white'}} type="text" value={audience} onChange={(e) => setAudience(e.target.value)} />
-                </label>
-                <button style={{ color: 'white' }} onClick={handleExport}>Export</button>
-                <button style={{ color: 'white' }} onClick={() => setModalIsOpen(false)}>Close</button>
+            <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} style={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.7)' }, content: { color: 'black', padding: '20px', borderRadius: '10px' } }}>
+                <h2>Export to Excel</h2>
+                <form>
+                    <label style={{ marginLeft: "40%" } }>
+                        Time Start:
+                        <input style={{ margin: "10px", color: 'black', backgroundColor: 'white' }} type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                    </label>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <label style={{ marginLeft: "40%" }}>
+                        Time End:
+                        <input style={{ margin:"10px", color: 'black', backgroundColor: 'white' }} type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+                    </label>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <label style={{ marginLeft: "40%" }}>
+                        Audience:
+                        <input style={{ margin: "10px", marginLeft: "40%", color: 'black', backgroundColor: 'white' }} type="text" value={audience} onChange={(e) => setAudience(e.target.value)} />
+                    </label>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div>
+                        <button style={{ marginLeft: "40%", color: 'white' }} onClick={handleExport}>Export</button>
+                        <button style={{ marginLeft: "40px", color: 'white' }} onClick={() => setModalIsOpen(false)}>Close</button>
+                    </div>
+                </form>
             </Modal>
         </div>
     );
