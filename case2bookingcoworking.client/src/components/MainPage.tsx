@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, TimePicker, Modal, Form, message, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { getUserData } from '../PanelMain';
+import ExportWithFilter from './ExcelButton';
 
 const { RangePicker } = TimePicker;
 
@@ -196,6 +197,7 @@ const MainPage: React.FC = () => {
           </Form.Item>
         </Form>
           </Modal>
+          <ExportWithFilter></ExportWithFilter>
     </div>
   );
 };
