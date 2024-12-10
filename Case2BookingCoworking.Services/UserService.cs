@@ -60,14 +60,70 @@ namespace Case2BookingCoworking.Services
             return user;
         }
 
-        public Task<ErrorOr<string>> Login(string Email, string Password)
+        public async Task<ErrorOr<string>> Login(string Email, string Password)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetUserByEmail(Email, CancellationToken.None);
+
+            if (user.IsError == true)
+            {
+                return user.Errors;
+            }
+
+            var result = _passwordHasher.VerifyPassword(Password, user.Value.Password);
+
+            if (result == false)
+            {
+                return Error.Failure("Wrong email or password.");
+            }
+
+            var token = _jwtProvider.GenerateToken(user.Value);
+
+            return token;
         }
 
-        public Task<ErrorOr<Success>> RegisterIfVerifiedAsync(UserRegisterRequest userRegistrationRequest, string code, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Success>> RegisterIfVerifiedAsync(UserRegisterRequest userRegistrationRequest, string code, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+                var result = _emailVerificationService.VerifyCode(email: userRegistrationRequest.Email, code);
+
+                if (result.IsError == true)
+                {
+                    return Error.Failure(description: "Verification code was failed.");
+                }
+
+                var verificationResult = result.Value;
+
+                switch (verificationResult)
+                {
+                    case VerificationResult.Verifed:
+                        return await OnVerifedAction(userRegistrationRequest, cancellationToken);
+
+                    case VerificationResult.Outdated:
+                        return OnOutdatedAction();
+
+                    case VerificationResult.Wrong:
+                        return OnWrongAction();
+                }
+
+                return Result.Success;
+            }
+        private async Task<ErrorOr<Success>> OnVerifedAction(
+
+            UserRegisterRequest userRegistrationRequest,
+            CancellationToken cancellationToken)
+        {
+            var user = await CreateUserAsync(userRegistrationRequest, cancellationToken);
+
+            return await _userRepository.AddAsync(user.Value, cancellationToken);
+        }
+
+        private Error OnOutdatedAction()
+        {
+            return Error.Forbidden(description: "Code was outdated.");
+        }
+
+        private Error OnWrongAction()
+        {
+            return Error.Forbidden(description: "Wrong code.");
         }
 
         public async Task<ErrorOr<Success>> SendEmailVerificationCode(string email, CancellationToken cancellationToken)
