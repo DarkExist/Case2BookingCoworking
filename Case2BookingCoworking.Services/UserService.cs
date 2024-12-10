@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Case2BookingCoworking.Services
+﻿namespace Case2BookingCoworking.Services
 {
-	public class UserService
-	{
-	}
+    public class UserService
+    {
+    }
 }

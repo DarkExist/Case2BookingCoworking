@@ -37,7 +37,7 @@ namespace Case2BookingCoworking.Infrastructure.Data.Context
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new HistoryConfig());
         }
-            public ILoggerFactory CreateLoggerFactory() => LoggerFactory
-            .Create(builder => { builder.AddConsole(); });
+        public ILoggerFactory CreateLoggerFactory() => LoggerFactory
+        .Create(builder => { builder.AddConsole(); });
     }
 }

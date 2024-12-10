@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Case2BookingCoworking.Infrastructure.Errors
+﻿namespace Case2BookingCoworking.Infrastructure.Errors
 {
     public sealed class TokenCancelledErrorBuilder : BaseErrorBuilder
     {

@@ -1,7 +1,6 @@
 ﻿using Case2BookingCoworking.Application.Abstract.Repos;
 using Case2BookingCoworking.Core.Domain.Entities;
 using Case2BookingCoworking.Infrastructure.Data.Context;
-using ErrorOr;
 
 namespace Case2BookingCoworking.Infrastructure.Data.Repos
 {

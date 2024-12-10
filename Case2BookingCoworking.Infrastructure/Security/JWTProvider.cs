@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DODQuiz.Infrastructure.Security
 {
-    internal class JWTProvider: IJWTProvider
+    internal class JWTProvider : IJWTProvider
     {
         private readonly IConfiguration configuration;
 

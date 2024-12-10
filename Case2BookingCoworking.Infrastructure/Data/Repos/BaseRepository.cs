@@ -1,7 +1,7 @@
 ﻿using Case2BookingCoworking.Infrastructure.Data.Context;
+using Case2BookingCoworking.Infrastructure.Errors;
 using CSharpFunctionalExtensions;
 using ErrorOr;
-using Case2BookingCoworking.Infrastructure.Errors;
 using Microsoft.EntityFrameworkCore;
 namespace Case2BookingCoworking.Infrastructure.Data.Repos
 {
