@@ -10,15 +10,15 @@ const ExportWithFilter = () => {
     const [audience, setAudience] = useState('');
 
     const handleExport = () => {
-        const history = JSON.parse(localStorage.getItem('history')!) || [];
+        const history = JSON.parse(localStorage.getItem('Reservations')!) || [];
 
         // Фильтрация данных
         const filteredData = history.filter((item:any) => {
-            const itemStartDate = new Date(item.timeOfStart);
-            const itemEndDate = new Date(item.timeOfEnd);
+            const itemStartDate = new Date(item.timeSlots.startTime);
+            const itemEndDate = new Date(item.timeSlots.endTime);
             const isInDateRange = (!startDate || itemStartDate >= new Date(startDate)) &&
                 (!endDate || itemEndDate <= new Date(endDate));
-            const isAudienceMatch = audience ? item.audience === audience : true;
+            const isAudienceMatch = audience ? item.coworking === audience : true;
 
             return isInDateRange && isAudienceMatch;
         });
@@ -61,8 +61,8 @@ const ExportWithFilter = () => {
                     <br></br>
                     <br></br>
                     <label style={{ marginLeft: "40%" }}>
-                        Audience:
-                        <input style={{ margin: "10px", marginLeft: "40%", color: 'black', backgroundColor: 'white' }} type="text" value={audience} onChange={(e) => setAudience(e.target.value)} />
+                        Coworking:
+                        <input style={{ margin: "10px", color: 'black', backgroundColor: 'white' }} type="text" value={audience} onChange={(e) => setAudience(e.target.value)} />
                     </label>
                     <br></br>
                     <br></br>

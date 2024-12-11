@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Button, Modal, Form, Input, message } from 'antd';
 import { setAllReservations, getReservations } from '../PanelMain'; // получаем данные пользователей и резервирований
+import ExportWithFilter from './ExcelButton'
 
 interface TimeSlot {
     startTime: string;
@@ -130,6 +131,7 @@ const AdminPanel: React.FC = () => {
         <div>
             <h2>Панель администратора</h2>
             <Table columns={columns} dataSource={reservations} rowKey="id" pagination={false} />
+            <ExportWithFilter></ExportWithFilter>
 
             {/* Модальное окно для изменения интервала */}
             <Modal
